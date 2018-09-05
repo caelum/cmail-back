@@ -1,10 +1,4 @@
-import express from 'express'
-
-const app = express()
-
-app.get('/', (req, res) => {
-    res.send('alo alo w brazil')
-})
+import app from "./src/app";
 
 const port = 3200
 app.listen(port, () => {
