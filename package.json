@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "cross-env NODE_ENV='development' nodemon ./server.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-integration": "cross-env NODE_ENV='test' mocha --require @babel/register --recursive './test/integration'"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +17,15 @@
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.1.2",
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "sequelize": "^4.38.0",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "supertest": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
