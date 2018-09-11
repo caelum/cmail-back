@@ -23,6 +23,7 @@
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "http-status": "^1.2.0",
     "mocha": "^5.2.0",
     "sequelize": "^4.38.0",
     "sqlite3": "^4.0.2",

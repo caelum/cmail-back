@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status'
 import { app, request, expect } from "../utils/helpers";
 
 const defaultUser = {
@@ -30,7 +31,7 @@ describe('# Routes: Users', () => {
                     expect(res.body[0].password).to.be.deep.equal(defaultUser.password)
                     expect(res.body[0].avatar_url).to.be.deep.equal(defaultUser.avatar_url)
 
-                    expect(res.status).to.be.equal(200)
+                    expect(res.status).to.be.equal(HttpStatus.OK)
                     done()
                 })
         })
