@@ -1,7 +1,12 @@
 module.exports = (app) => {
+    const users = app.datasource.models.users;
+
     app.get('/users', (req, res) => {
-        res.send([{
-            texto: 'alo alo w brazil'
-        }])
+
+        users.findAll({})
+            .then((listOfUsers) => {
+                res.json(listOfUsers)
+            })
+
     })
 }
