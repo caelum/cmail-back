@@ -36,5 +36,38 @@ describe('# Routes: Users', () => {
                 })
         })
     })
+
+    describe('## POST /users', () => {
+        const newUser = {
+            email: 'teste2@teste.com',
+            name: 'Usuario Novo Teste',
+            password: 'teste1234',
+            avatar_url: 'http://placehold.it/200x200'    
+        };
+
+        it('should register a new user and return the created user', (done) => {
+            request
+                .post('/users')
+                .send(newUser)
+                .end((err, res) => {
+                    expect(res.status).to.equal(HttpStatus.CREATED);
+                    done(err);
+                });
+        })
+
+        it('should return error if email already exists', (done) => {
+            const newUser2 = {
+                ...newUser,
+                email: defaultUser.email
+            }
+            request
+                .post('/users')
+                .send(newUser2)
+                .end((err, res) => {
+                    expect(res.status).to.equal(HttpStatus.BAD_REQUEST);
+                    done(err);
+                });
+        })
+    })
 })
 
