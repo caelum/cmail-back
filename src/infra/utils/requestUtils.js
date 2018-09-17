@@ -6,8 +6,11 @@ export const defaultResponse = (response, data, statusCode = HttpStatus.OK) => {
 }
 
 export const errorResponse = (response, error, statusCode = HttpStatus.BAD_REQUEST) => {
+    
+    const body = error.body || []
+
     return defaultResponse(response, {
-        ...error.body,
+        body: [...body],
         message: error.message,
     }, statusCode)
 }

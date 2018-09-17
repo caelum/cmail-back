@@ -27,4 +27,5 @@ export class UsersController {
                 requestUtils.errorResponse(res, error)
             });
     }
+
 }
