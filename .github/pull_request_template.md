@@ -9,7 +9,7 @@ Insira aqui a descrição da funcionalidade, mencione issues e outras coisas lig
 
 ### Checklist pré-merge
 
-- [] Verificar se esse Pull Request
+- [] Verificar se esse Pull Request está alinhado com um rebase da master
 - [] Fazer Squash em commits desnecessários
 
 ### Screenshots
