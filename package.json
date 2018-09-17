@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "cross-env NODE_ENV='development' nodemon ./server.js --exec babel-node",
+    "debug": "cross-env NODE_ENV='development' nodemon --inspect ./server.js --exec babel-node",
     "test-integration": "cross-env NODE_ENV='test' mocha --require @babel/register --recursive './test/integration'"
   },
   "keywords": [],
