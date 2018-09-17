@@ -4,13 +4,13 @@ Insira aqui a descrição da funcionalidade, mencione issues e outras coisas lig
 
 ### Revisão
 
-- [] Check if ...
-- [] ...
+- [ ] Check if ...
+- [ ] ...
 
 ### Checklist pré-merge
 
-- [] Verificar se esse Pull Request está alinhado com um rebase da master
-- [] Fazer Squash em commits desnecessários
+- [ ] Verificar se esse Pull Request está alinhado com um rebase da master
+- [ ] Fazer Squash em commits desnecessários
 
 ### Screenshots
 
