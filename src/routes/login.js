@@ -1,14 +1,9 @@
-import * as validator from '../infra/validator'
+
+import { validatorMiddleware } from '../infra/validator'
+import { userLoginSchema } from '../controllers/schemas/userLoginSchema.js'
 import { UsersRepository } from '../repositories/UsersRepository'
 import { UsersService } from '../services/UsersService'
 import { LoginController } from '../controllers/LoginController'
-
-import Joi from 'joi'
-
-const userLoginSchema = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().required()
-});
 
 module.exports = (app) => {
     const users = app.datasource.models.users;
@@ -18,7 +13,7 @@ module.exports = (app) => {
 
     app.post(
         '/login',
-        validator.validateMiddleware({
+        validatorMiddleware({
             body: userLoginSchema,
         }),
         loginController.signIn

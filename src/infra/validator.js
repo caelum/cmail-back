@@ -81,7 +81,7 @@ class Validation {
     }
 }
 
-export const validateMiddleware = (validations) => (req,res,next) => {
+export const validatorMiddleware = (validations) => (req,res,next) => {
     const validator = new Validator(req,validations)
 
     validator.validate()
