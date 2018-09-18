@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: e6f9c464fd919e6bbabc74b9c24d0f99bef48b4546ee5ae11ffdef3794302a35
     working_directory: ~/tmp
     docker:
       - image: circleci/node:8
@@ -8,3 +10,8 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test-integration
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
