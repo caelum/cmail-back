@@ -7,7 +7,7 @@
     "start": "node server",
     "dev": "cross-env NODE_ENV='development' nodemon ./server.js --exec babel-node",
     "debug": "cross-env NODE_ENV='development' nodemon --inspect ./server.js --exec babel-node",
-    "test-integration": "cross-env NODE_ENV='test' mocha --require @babel/register --recursive './test/integration'"
+    "test-integration": "cross-env NODE_ENV='test' nyc --reporter=text --reporter=html --reporter=lcov mocha --require @babel/register --recursive './test/integration'"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +40,8 @@
     "supertest": "^3.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "coveralls": "^3.0.2",
+    "nodemon": "^1.18.4",
+    "nyc": "^13.0.1"
   }
 }
