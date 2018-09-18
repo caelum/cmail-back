@@ -1,4 +1,4 @@
-export class UserRepository {
+export class UsersRepository {
     constructor(users) {
         this.users = users
     }
@@ -10,10 +10,11 @@ export class UserRepository {
             }
         })
         .then((userFound) => {
-            if(!userFound) {
-                new Error('User not found, please check your information')
+            const hasUser = userFound && userFound.dataValues
+            if(hasUser) {
+                return userFound.dataValues
             }
-            return userFound.dataValues
+            throw new Error('User not found, please check your information')
         })
     }
 }
