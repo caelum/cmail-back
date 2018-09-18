@@ -5,9 +5,18 @@ export const defaultResponse = (response, data, statusCode = HttpStatus.OK) => {
     response.json(data)
 }
 
-export const errorResponse = (response, error, statusCode = HttpStatus.BAD_REQUEST) => {
+export const errorResponse = (response, errorData, statusCode = HttpStatus.BAD_REQUEST) => {
+    const error = errorResponseDTO(errorData)
+    const body = error.body || ''
+
     return defaultResponse(response, {
-        ...error.body,
         message: error.message,
+        body: body,
     }, statusCode)
+}
+
+const errorResponseDTO = (errorData) => {
+    const err = new Error(errorData.message)
+    err.body = errorData.body
+    return err
 }
