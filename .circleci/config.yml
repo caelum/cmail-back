@@ -6,6 +6,8 @@ jobs:
     working_directory: ~/tmp
     docker:
       - image: circleci/node:8
+        environment: 
+          repo_token: lMhmDbvzUYOq3UViwOsrorbULyFtr0byN 
     steps:
       - checkout
       - run: npm install
