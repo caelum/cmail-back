@@ -5,7 +5,8 @@ const defaultUser = {
     email: 'teste@teste.com',
     name: 'Teste',
     password: 'teste123',
-    avatar_url: 'http://placehold.it/200x200'
+    avatar_url: 'http://placehold.it/200x200',
+    id: '1234567890'
 }
 
 describe('# Routes: Users', () => {
@@ -30,6 +31,22 @@ describe('# Routes: Users', () => {
                     expect(res.body[0].name).to.be.deep.equal(defaultUser.name)
                     expect(res.body[0].password).to.be.deep.equal(defaultUser.password)
                     expect(res.body[0].avatar_url).to.be.deep.equal(defaultUser.avatar_url)
+
+                    expect(res.status).to.be.equal(HttpStatus.OK)
+                    done()
+                })
+        })
+    })
+
+    describe('## GET /users/:userId', () => {
+
+        it('Should return one user by id', (done)=> {
+            request
+                .get(`users/${defaultUser.id}`)
+                .end((err, res) => {
+                    console.log(res.body);
+                    
+                    expect(res.body.id).to.be.deep.equal(defaultUser.id)
 
                     expect(res.status).to.be.equal(HttpStatus.OK)
                     done()
