@@ -11,15 +11,7 @@ module.exports = (app) => {
             })
     })
 
-    app.get('/users/:userId', (req, res) => {
-        users.findOne({where: {id: req.params.userId}})
-            .then(theUser => {
-                
-                res.json(theUser)
-            })
-
-
-    })
+    app.get('/users/:userId', usersController.searchUser)
 
     app.post('/users', usersController.createUser)
 }

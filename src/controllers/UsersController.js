@@ -6,7 +6,7 @@ export class UsersController {
         this.userRepository = userRepository
     }
 
-    createUser = (req,res) => {
+    createUser = (req, res) => {
         const newUser = req.body
 
         this.userRepository.create(newUser)
@@ -23,8 +23,25 @@ export class UsersController {
                         }
                     })
                 }
-                
+
                 requestUtils.errorResponse(res, error)
+            });
+    }
+
+    searchUser = (req, res) => {
+
+        this.userRepository.findOne({ where: { id: req.params.userId } })
+            .then(theUser => {
+                
+                if(theUser){
+                    return requestUtils.defaultResponse(res, theUser, HttpStatus.OK)
+                }
+                
+                throw new Error('User not found, please check your information')
+
+            })
+            .catch(error => {
+                requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
             });
     }
 

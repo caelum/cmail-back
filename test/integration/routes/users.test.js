@@ -5,20 +5,19 @@ const defaultUser = {
     email: 'teste@teste.com',
     name: 'Teste',
     password: 'teste123',
-    avatar_url: 'http://placehold.it/200x200',
-    id: '1234567890'
+    avatar_url: 'http://placehold.it/200x200'
 }
 
 describe('# Routes: Users', () => {
     beforeEach((done) => {
         (async () => {
-            const sequelize = app.datasource.sequelize
+            const sequelize = app.datasource.sequelize;
             const users = app.datasource.models.users;
 
             await sequelize.drop() // Drop everything
             await sequelize.sync() // Rebuild Everything
             await users.create(defaultUser)
-            done()
+            done();
         })()
     })
 
@@ -26,30 +25,59 @@ describe('# Routes: Users', () => {
         it('should return all users', (done) => {
             request
                 .get('/users')
-                .end((err, res)=>{                    
-                    expect(res.body[0].email).to.be.deep.equal(defaultUser.email)
-                    expect(res.body[0].name).to.be.deep.equal(defaultUser.name)
-                    expect(res.body[0].password).to.be.deep.equal(defaultUser.password)
-                    expect(res.body[0].avatar_url).to.be.deep.equal(defaultUser.avatar_url)
+                .end((err, res) => {
+                    expect(res.body[0].email).to.be.deep.equal(defaultUser.email);
+                    expect(res.body[0].name).to.be.deep.equal(defaultUser.name);
+                    expect(res.body[0].password).to.be.deep.equal(defaultUser.password);
+                    expect(res.body[0].avatar_url).to.be.deep.equal(defaultUser.avatar_url);
 
-                    expect(res.status).to.be.equal(HttpStatus.OK)
-                    done()
+                    expect(res.status).to.be.equal(HttpStatus.OK);
+
+                    done();
                 })
         })
     })
 
     describe('## GET /users/:userId', () => {
 
-        it('Should return one user by id', (done)=> {
-            request
-                .get(`users/${defaultUser.id}`)
-                .end((err, res) => {
-                    console.log(res.body);
-                    
-                    expect(res.body.id).to.be.deep.equal(defaultUser.id)
+        let createdUser;
 
-                    expect(res.status).to.be.equal(HttpStatus.OK)
-                    done()
+        beforeEach((done) => {
+            (async () => {
+                const sequelize = app.datasource.sequelize;
+                const users = app.datasource.models.users;
+
+                await sequelize.drop();
+                await sequelize.sync();
+                createdUser = await users.create(defaultUser);
+
+                done();
+            })()
+        })
+
+        it('Should return one user by id', (done) => {
+
+            request
+                .get(`/users/${createdUser.id}`)
+                .end((err, res) => {
+
+                    expect(res.body.id).to.be.deep.equal(createdUser.id);
+                    expect(res.status).to.be.equal(HttpStatus.OK);
+
+                    done();
+                })
+        })
+
+        it('Should return a not found error if user not exists', (done) => {
+
+            let randomId = Math.round(Math.random() * 10000);
+
+            request
+                .get(`/users/${randomId}`)
+                .end((err, res) => {
+
+                    expect(res.status).to.be.equal(HttpStatus.NOT_FOUND);
+                    done(err);
                 })
         })
     })
@@ -59,7 +87,7 @@ describe('# Routes: Users', () => {
             email: 'teste2@teste.com',
             name: 'Usuario Novo Teste',
             password: 'teste1234',
-            avatar_url: 'http://placehold.it/200x200'    
+            avatar_url: 'http://placehold.it/200x200'
         };
 
         it('should register a new user and return the created user', (done) => {
