@@ -60,11 +60,10 @@ describe('# Routes: Users', () => {
             request
                 .get(`/users/${createdUser.id}`)
                 .end((err, res) => {
-
                     expect(res.body.id).to.be.deep.equal(createdUser.id);
-                    expect(res.status).to.be.equal(HttpStatus.OK);
+                    expect(res.status).to.be.equal(HttpStatus.FOUND);
 
-                    done();
+                    done(err);
                 })
         })
 
@@ -75,7 +74,6 @@ describe('# Routes: Users', () => {
             request
                 .get(`/users/${randomId}`)
                 .end((err, res) => {
-
                     expect(res.status).to.be.equal(HttpStatus.NOT_FOUND);
                     done(err);
                 })

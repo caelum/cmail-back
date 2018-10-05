@@ -7,9 +7,8 @@ export class UsersController {
     }
 
     createUser = (req, res) => {
-        const newUser = req.body
-
-        this.userRepository.create(newUser)
+        this.userRepository
+            .create(req.body)
             .then(createdUser => {
                 requestUtils.defaultResponse(res, createdUser, HttpStatus.CREATED)
             })
@@ -30,19 +29,15 @@ export class UsersController {
 
     searchUser = (req, res) => {
 
-        this.userRepository.findOne({ where: { id: req.params.userId } })
-            .then(theUser => {
-                
-                if(theUser){
-                    return requestUtils.defaultResponse(res, theUser, HttpStatus.OK)
-                }
-                
-                throw new Error('User not found, please check your information')
-
-            })
-            .catch(error => {
-                requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
-            });
+        return this.userRepository
+                    .findUserById(req.params.userId)
+                    .then(userData => {
+                        requestUtils.defaultResponse(res, userData, HttpStatus.FOUND)
+                    })
+                    .catch(error => {
+                        requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
+                    });
+            
     }
 
 }
