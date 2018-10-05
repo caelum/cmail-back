@@ -5,3 +5,22 @@
 [![CircleCI](https://circleci.com/gh/omariosouto/cmail-back/tree/master.svg?style=svg)](https://circleci.com/gh/omariosouto/cmail-back/tree/master)
 
 Seja bem vindo ao back-end do Cmail :)
+
+## API
+`http://localhost:3000/`  
+| Response formats: | JSON |
+|------|--------|
+
+### Endpoints:
+#### Users `/users`
+**Accepts:**  
+    * `GET`
+    * `POST`
+
+#### Parameters `user/:userId`
+**Accepts:**  
+    * `GET`
+    
+#### Login `/login`
+**Accepts:**  
+    * `POST`
