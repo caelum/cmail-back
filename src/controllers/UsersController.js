@@ -6,10 +6,9 @@ export class UsersController {
         this.userRepository = userRepository
     }
 
-    createUser = (req,res) => {
-        const newUser = req.body
-
-        this.userRepository.create(newUser)
+    createUser = (req, res) => {
+        this.userRepository
+            .create(req.body)
             .then(createdUser => {
                 requestUtils.defaultResponse(res, createdUser, HttpStatus.CREATED)
             })
@@ -23,9 +22,22 @@ export class UsersController {
                         }
                     })
                 }
-                
+
                 requestUtils.errorResponse(res, error)
             });
+    }
+
+    searchUser = (req, res) => {
+
+        return this.userRepository
+                    .findUserById(req.params.userId)
+                    .then(userData => {
+                        requestUtils.defaultResponse(res, userData, HttpStatus.FOUND)
+                    })
+                    .catch(error => {
+                        requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
+                    });
+            
     }
 
 }
