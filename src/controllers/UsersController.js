@@ -28,16 +28,24 @@ export class UsersController {
     }
 
     searchUser = (req, res) => {
+        this.userRepository
+            .findUserById(req.params.userId)
+            .then(userData => {
+                requestUtils.defaultResponse(res, userData, HttpStatus.FOUND)
+            })
+            .catch(error => {
+                requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
+            });
 
-        return this.userRepository
-                    .findUserById(req.params.userId)
-                    .then(userData => {
-                        requestUtils.defaultResponse(res, userData, HttpStatus.FOUND)
-                    })
-                    .catch(error => {
-                        requestUtils.errorResponse(res, error, HttpStatus.NOT_FOUND)
-                    });
-            
     }
-
+    updateUser = (req, res) => {
+        this.userRepository
+            .update(req.body)
+            .then(success => {
+                requestUtils.defaultResponse(res, success, HttpStatus.OK)
+            })
+            .catch(error => {
+                requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)
+            });
+    }
 }

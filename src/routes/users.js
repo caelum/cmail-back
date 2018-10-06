@@ -16,4 +16,8 @@ module.exports = (app) => {
     app.get('/users/:userId', usersController.searchUser)
 
     app.post('/users', usersController.createUser)
+
+    app.patch('/users/:userId', usersController.updateUser)
+
+
 }

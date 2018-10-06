@@ -29,7 +29,7 @@ export class UsersRepository {
             if (hasUser) {
                 return userFound.dataValues
             }
-            throw new Error('User id not found')
+            throw new Error(`User id ${userId} not found`)
         })
         
     }
@@ -38,4 +38,20 @@ export class UsersRepository {
         return this.users.create(newUser)
     }
 
-}
+    update = (newData) => {
+        return this.users.update(newData, {
+            where: {
+                id: newData.id
+            }
+        })
+        .then((rowsAffected) => {
+            if(rowsAffected[0]){
+                return {
+                    message: `${newData.name} successfully updated!`
+                }
+            }
+            throw new Error(`User id ${newData.id} not found`)
+        })
+    } 
+
+}   

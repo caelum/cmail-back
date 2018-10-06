@@ -74,6 +74,7 @@ describe('# Routes: Users', () => {
             request
                 .get(`/users/${randomId}`)
                 .end((err, res) => {
+                    expect(res.body.message).to.be.deep.equal(`User id ${randomId} not found`)
                     expect(res.status).to.be.equal(HttpStatus.NOT_FOUND);
                     done(err);
                 })
@@ -110,6 +111,59 @@ describe('# Routes: Users', () => {
                     expect(res.status).to.equal(HttpStatus.BAD_REQUEST);
                     done(err);
                 });
+        })
+    })
+
+    describe('## PATCH /users/:userId', () => {
+        let oldUser,
+            newUserData = {
+                email: 'jon@teste.com',
+                name: 'Jon Doe',
+                password: '123testing',
+                avatar_url: 'http://placehold.it/200x200/123'
+            }
+
+        beforeEach((done) => {
+            (async () => {
+                const sequelize = app.datasource.sequelize;
+                const users = app.datasource.models.users;
+
+                await sequelize.drop();
+                await sequelize.sync();
+                oldUser = await users.create(defaultUser);
+
+                done();
+            })()
+        })
+        
+        it('Should update data from a user by id', (done) => {
+            newUserData.id = oldUser.id;
+
+            request
+                .patch(`/users/${newUserData.id}`)
+                .send(newUserData)
+                .end((err,res)=>{
+                    expect(res.body.message).to.be.deep.equal(`${newUserData.name} successfully updated!`)
+                    expect(res.status).to.be.deep.equal(HttpStatus.OK)
+
+                    done(err);
+                })
+        })
+
+        it('Should return an error if user not exists', (done) => {
+            
+            let randomId = Math.round(Math.random() * 10000);
+            newUserData.id = randomId;
+
+            request
+                .patch(`/users/${randomId}`)
+                .send(newUserData)
+                .end((err, res) => {
+                    
+                    expect(res.status).to.be.equal(HttpStatus.BAD_REQUEST);
+                    done(err);      
+                    
+                })
         })
     })
 })
