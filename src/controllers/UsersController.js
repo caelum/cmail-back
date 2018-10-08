@@ -41,8 +41,14 @@ export class UsersController {
     updateUser = (req, res) => {
         this.userRepository
             .update(req.body)
-            .then(success => {
-                requestUtils.defaultResponse(res, success, HttpStatus.OK)
+            .then(response => {
+                
+                const message = {
+                    message: `${req.body.name} successfully updated!`,
+                    response
+                }
+                
+                requestUtils.defaultResponse(res, message, HttpStatus.OK)
             })
             .catch(error => {
                 requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)

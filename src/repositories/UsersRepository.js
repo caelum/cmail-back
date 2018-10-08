@@ -46,9 +46,7 @@ export class UsersRepository {
         })
         .then((rowsAffected) => {
             if(rowsAffected[0]){
-                return {
-                    message: `${newData.name} successfully updated!`
-                }
+                return rowsAffected
             }
             throw new Error(`User id ${newData.id} not found`)
         })
