@@ -8,19 +8,20 @@ Seja bem vindo ao back-end do Cmail :)
 
 ## API
 `http://localhost:3000/`  
-| Response formats: | JSON |
-|------|--------|
+
+Response formats: JSON
 
 ### Endpoints:
 #### Users `/users`
 **Accepts:**  
-    * `GET`
-    * `POST`
+    - `GET`  
+    - `POST`  
 
 #### Parameters `user/:userId`
 **Accepts:**  
-    * `GET`
+    - `GET`  
+    - `PATCH`   
     
 #### Login `/login`
 **Accepts:**  
-    * `POST`
+    - `POST`
