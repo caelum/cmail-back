@@ -50,6 +50,8 @@ describe('# Routes: Emails', () => {
                     .send(email)
                     .set({ authorizarion: defaultUser.token })
                     .end((err, res) => {
+                        console.log(res.body);
+                        
                         expect(res.status).to.equal(HttpStatus.OK);
                         done(err)
                     })

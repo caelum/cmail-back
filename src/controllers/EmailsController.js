@@ -1,3 +1,4 @@
+import * as requestUtils from '../infra/utils/requestUtils'
 import HttpStatus from 'http-status'
 
 export class EmailsController {
@@ -8,14 +9,12 @@ export class EmailsController {
 
     sendEmail = (req,res) => {
 
-        console.log(`ola`);
-        
-
         this.emailRepository
             .create(req.body)
             .then(
                 (res) => {
-                    res.json(HttpStatus.OK)
+                    requestUtils.defaultResponse(res, email, HttpStatus.OK)
+                    //res.json(HttpStatus.OK)
                 }
             )
             .catch(
