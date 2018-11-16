@@ -48,11 +48,13 @@ describe('# Routes: Emails', () => {
                 request
                     .post('/emails')
                     .send(email)
-                    .set({ authorizarion: defaultUser.token })
+                    .set({ authorization: defaultUser.token })
                     .end((err, res) => {
-                        console.log(res.body);
+                        expect(res.body.from).to.be.equal(email.from)
+                        expect(res.body.to).to.be.equal(email.to)
+                        expect(res.body.subject).to.be.equal(email.subject)
                         
-                        expect(res.status).to.equal(HttpStatus.OK);
+                        expect(res.status).to.equal(HttpStatus.CREATED);
                         done(err)
                     })
             })

@@ -11,15 +11,21 @@ export class EmailsController {
 
         this.emailRepository
             .create(req.body)
-            .then(
-                (res) => {
-                    requestUtils.defaultResponse(res, email, HttpStatus.OK)
-                    //res.json(HttpStatus.OK)
-                }
-            )
+            .then(createdEmail => {
+                requestUtils.defaultResponse(res, createdEmail, HttpStatus.CREATED)
+            })
             .catch(
-                () => {
-                    res.json(HttpStatus.INTERNAL_SERVER_ERROR)
+                error => {
+                    error = {
+                        message: error.message,
+                        body: error.errors.map((item) => {
+                            return {
+                                message: item.message,
+                                value: item.value
+                            }
+                        })
+                    }
+                    requestUtils.errorResponse(res, error, HttpStatus.INTERNAL_SERVER_ERROR)
                 }
             )
     }

@@ -87,7 +87,6 @@ export const validatorMiddleware = (validations) => (req,res,next) => {
     const validator = new Validator(req,validations)
 
     validator.validate()
-    
     req.validations = {
         hasErrors: validator.hasErrors,
         errors: {

@@ -10,9 +10,6 @@ export default (sequelize, DataType) => {
         from: {
             type: DataType.STRING,
             allowNull: false,
-            unique: {
-                args: true
-            },
             validate: {
                 isEmail: true
             }
@@ -20,9 +17,6 @@ export default (sequelize, DataType) => {
         to: {
             type: DataType.STRING,
             allowNull: false,
-            unique: {
-                args: true
-            },
             validate: {
                 isEmail: true
             }
