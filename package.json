@@ -9,7 +9,7 @@
     "debug": "cross-env NODE_ENV='development' nodemon --inspect ./server.js --exec babel-node",
     "test-integration": "cross-env NODE_ENV='test' nyc --reporter=text --reporter=html --reporter=lcov mocha --require @babel/register --recursive './test/integration'",
     "test": "cross-env NODE_ENV='test' nyc --reporter=text --reporter=html --reporter=lcov mocha --require @babel/register --recursive './test/**/*.test.js'",
-    "coveralls":"nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",

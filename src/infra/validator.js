@@ -9,6 +9,7 @@ class Validator {
         for(const validation in validations) {
             this._validations[validation] = new Validation(validation, validations[validation])
         }
+
     }
 
     validate = () => {
@@ -53,7 +54,7 @@ class Validation {
     }
 
     isHeader(validationType) {
-        return validationType === 'header'
+        return validationType === 'headers'
     }
 
     isValidValidationType(validationType) {
@@ -82,10 +83,10 @@ class Validation {
 }
 
 export const validatorMiddleware = (validations) => (req,res,next) => {
+    
     const validator = new Validator(req,validations)
 
     validator.validate()
-    
     req.validations = {
         hasErrors: validator.hasErrors,
         errors: {
