@@ -54,7 +54,12 @@ class Validation {
     }
 
     isHeader(validationType) {
-        return validationType === 'headers'
+        const isHeader = validationType === 'headers'
+        if(isHeader) {
+            this._ignoreUnknown = true
+            return true
+        }
+        return false
     }
 
     isValidValidationType(validationType) {
@@ -68,6 +73,7 @@ class Validation {
         }
         throw new Error('Invalid validation type')
     }
+
     setValidationSchema(validationSchema) {
         if(this._ignoreUnknown) {
             this._validationSchema = validationSchema.unknown()

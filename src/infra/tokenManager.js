@@ -19,7 +19,7 @@ export const generate = (obj) => {
 
 export const verify = (token) => {
     return new Promise((resolve, reject) => {
-        JWT.verify(token, cert, function(err, decoded) {
+        JWT.verify(token, SECRET_KEY, function(err, decoded) {
             if(err) {
                 reject(err)
             }

@@ -9,7 +9,9 @@ module.exports = (app) => {
     app.get('/users', (req, res) => {
         users.findAll({})
             .then((listOfUsers) => {
-                res.json(listOfUsers)
+                res.json({
+                    users: listOfUsers
+                })
             })
     })
 

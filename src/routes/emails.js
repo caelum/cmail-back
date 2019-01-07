@@ -13,4 +13,11 @@ module.exports = (app) => {
                 headers: authSchema
             }),
             emailsController.sendEmail)
+
+
+    app.get('/emails', 
+            validatorMiddleware({
+                headers: authSchema
+            }),
+            emailsController.listAllEmailsFromUser)
 }

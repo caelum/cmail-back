@@ -35,6 +35,13 @@ export class UsersRepository {
     }
 
     create = (newUser) => {
+        newUser = {
+            "name": newUser.name,
+            "surname": newUser.surname,
+            "email": newUser.email,
+            "phone": newUser.phone,
+            "avatar_url": newUser.avatar || "http://placehold.it/120x120"
+        }
         return this.users.create(newUser)
     }
 

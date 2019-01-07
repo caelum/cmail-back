@@ -20,6 +20,7 @@ export default (sequelize, DataType) => {
         password: {
             type: DataType.STRING,
             allowNull: false,
+            defaultValue: '123',
             validate: {
                 min: 4
             }
@@ -29,6 +30,20 @@ export default (sequelize, DataType) => {
             allowNull: false,
             validate: {
                 min: 2
+            }
+        },
+        surname: {
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                min: 2
+            }
+        },
+        phone: {
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                min: 8
             }
         },
         avatar_url: {
