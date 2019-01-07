@@ -20,4 +20,12 @@ module.exports = (app) => {
                 headers: authSchema
             }),
             emailsController.listAllEmailsFromUser)
+
+
+    app.delete('/emails/:id', 
+            validatorMiddleware({
+                headers: authSchema
+            }),
+            emailsController.removeEmail)
+
 }

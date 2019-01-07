@@ -76,4 +76,35 @@ export class EmailsController {
                 }
             )
     }
+
+    removeEmail = async (req,res) => {
+        if(req.validations.hasErrors()) {
+            requestUtils.errorResponse(res, req.validations.errors)
+            return;
+        }
+
+        const emailId = req.params.id
+
+        this.emailRepository
+            .delete(emailId)
+            .then(deletedEmailOperationStatus => {
+                requestUtils.defaultResponse(res, {
+                    emailStatus: Boolean(deletedEmailOperationStatus)
+                }, HttpStatus.CREATED)
+            })
+            .catch(
+                error => {
+                    error = {
+                        message: error.message,
+                        body: error.errors.map((item) => {
+                            return {
+                                message: item.message,
+                                value: item.value
+                            }
+                        })
+                    }
+                    requestUtils.errorResponse(res, error, HttpStatus.INTERNAL_SERVER_ERROR)
+                }
+            )
+    }
 }

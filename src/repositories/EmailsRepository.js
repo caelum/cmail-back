@@ -8,6 +8,12 @@ export class EmailsRepository {
         return this.emails.create(email)
     }
 
+    delete = (emailId) => {
+        return this.emails.destroy({
+            where: { id: emailId }
+        })
+    }
+
 
     getAllEmailsBySender = (sender) => {
         return this.emails.findAll({
