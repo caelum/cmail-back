@@ -37,8 +37,8 @@ export class UsersRepository {
     create = (newUser) => {
         newUser = {
             "name": newUser.name,
-            "surname": newUser.surname,
-            "email": newUser.email,
+            "username": newUser.username,
+            "email": `${newUser.username}@cmail.com.br`,
             "phone": newUser.phone,
             "avatar_url": newUser.avatar || "http://placehold.it/120x120"
         }

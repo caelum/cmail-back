@@ -32,7 +32,7 @@ export default (sequelize, DataType) => {
                 min: 2
             }
         },
-        surname: {
+        username: {
             type: DataType.STRING,
             allowNull: false,
             validate: {
