@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "cross-env NODE_ENV='production' nodemon ./server.js --exec babel-node",
     "dev": "cross-env NODE_ENV='development' nodemon ./server.js --exec babel-node",
     "debug": "cross-env NODE_ENV='development' nodemon --inspect ./server.js --exec babel-node",
     "test-integration": "cross-env NODE_ENV='test' nyc --reporter=text --reporter=html --reporter=lcov mocha --require @babel/register --recursive './test/integration'",
