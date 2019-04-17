@@ -16,7 +16,7 @@ Response formats: JSON
 **Accepts:**  
     - `GET`  
     - `POST`  
-```json
+```
 {
     name: '',
     username: '',
@@ -34,7 +34,7 @@ Response formats: JSON
 ### Login `/login`:
 **Accepts:**  
     - `POST`
-```json
+```
 {
     email: '',
     password: ''
@@ -44,7 +44,7 @@ Response formats: JSON
 ### Email `/emails`:
 **Accepts:**  
     - `POST`
-```json
+```
 {
     to: '',
     subject: '',
