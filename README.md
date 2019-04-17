@@ -7,21 +7,52 @@
 Seja bem vindo ao back-end do Cmail :)
 
 ## API
-`http://localhost:3000/`  
+`http://localhost:3200/`  
 
 Response formats: JSON
 
-### Endpoints:
-#### Users `/users`
+## Endpoints
+### Users `/users`:
 **Accepts:**  
     - `GET`  
     - `POST`  
+```json
+{
+    name: '',
+    username: '',
+    phone: '',
+    password: '',
+    avatar: ''
+}
+```
 
-#### Parameters `user/:userId`
+#### Parameters `user/:userId`:
 **Accepts:**  
     - `GET`  
     - `PATCH`   
     
-#### Login `/login`
+### Login `/login`:
 **Accepts:**  
     - `POST`
+```json
+{
+    email: '',
+    password: ''
+}
+```
+
+### Email `/emails`:
+**Accepts:**  
+    - `POST`
+```json
+{
+    to: '',
+    subject: '',
+    content: ''
+}
+```
+Headers: `authorization`
+
+    - `GET`
+    - `DELETE`
+    
