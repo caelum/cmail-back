@@ -42,8 +42,13 @@ Response formats: JSON
 ```
 
 ### Email `/emails`:
+Headers: `authorization`
+
 **Accepts:**  
     - `POST`
+    - `GET`
+
+
 ```
 {
     to: '',
@@ -51,8 +56,7 @@ Response formats: JSON
     content: ''
 }
 ```
-Headers: `authorization`
 
-    - `GET`
-    - `DELETE`
-    
+#### Parameters `emails/:emailId`:
+**Accepts:**  
+    - `DELETE`  
