@@ -26,7 +26,10 @@ export class EmailsRepository {
             if (hasEmails) {
                 return emailsFound
             }
-            throw new Error(`Emails from sender ${sender} not found`)
+            else {
+                return []
+            }
+            //throw new Error(`Emails from sender ${sender} not found`)
         })
     }
 
