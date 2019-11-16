@@ -26,7 +26,12 @@ Response formats: JSON
 }
 ```
 
-#### Parameters `user/:userId`:
+#### Parameters 
+##### ` users/validation/:username`
+**Accepts:**  
+    - `GET`  
+  
+##### `user/:userId`
 **Accepts:**  
     - `GET`  
     - `PATCH`   
@@ -45,9 +50,8 @@ Response formats: JSON
 Headers: `authorization`
 
 **Accepts:**  
-    - `POST`
+    - `POST`  
     - `GET`
-
 
 ```
 {

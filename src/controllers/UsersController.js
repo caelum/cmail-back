@@ -38,6 +38,20 @@ export class UsersController {
             });
 
     }
+
+    lookupUsername = (req, res) => {
+        this.userRepository
+            .isUsernameTaken(req.params.username)
+            .then(userData => {
+                requestUtils.defaultResponse(res, userData, HttpStatus.ACCEPTED)
+            })
+            .catch(error => {
+                requestUtils.errorResponse(res, error, HttpStatus.IM_A_TEAPOT)
+            });
+
+    }
+
+
     updateUser = (req, res) => {
         this.userRepository
             .update(req.body)
@@ -54,4 +68,6 @@ export class UsersController {
                 requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)
             });
     }
+
+
 }

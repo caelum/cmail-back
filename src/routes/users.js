@@ -21,5 +21,7 @@ module.exports = (app) => {
 
     app.patch('/users/:userId', usersController.updateUser)
 
+    app.get('/users/validation/:username', usersController.lookupUsername)
+
 
 }

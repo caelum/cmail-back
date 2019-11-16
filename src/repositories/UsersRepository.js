@@ -59,4 +59,23 @@ export class UsersRepository {
         })
     } 
 
+    isUsernameTaken = (username) => {
+        
+        return this.users.findOne({
+            where: {
+                username: username
+            }
+        })
+        .then((userFound) => {
+            const hasUser = userFound && userFound.dataValues
+            if (hasUser) {
+                throw new Error(`Username ${username} has already been taken`)
+            } else {
+                return `Username available ${username}`
+            }
+        })
+
+    }
+
+
 }   
