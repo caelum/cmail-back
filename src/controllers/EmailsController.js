@@ -40,7 +40,7 @@ export class EmailsController {
                             }
                         })
                     }
-                    requestUtils.errorResponse(res, error, HttpStatus.INTERNAL_SERVER_ERROR)
+                    requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)
                 }
             )
     }
@@ -72,7 +72,7 @@ export class EmailsController {
                             }
                         })
                     }
-                    requestUtils.errorResponse(res, error, HttpStatus.INTERNAL_SERVER_ERROR)
+                    requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)
                 }
             )
     }
@@ -103,7 +103,7 @@ export class EmailsController {
                             }
                         })
                     }
-                    requestUtils.errorResponse(res, error, HttpStatus.INTERNAL_SERVER_ERROR)
+                    requestUtils.errorResponse(res, error, HttpStatus.BAD_REQUEST)
                 }
             )
     }
