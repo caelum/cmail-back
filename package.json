@@ -1,7 +1,10 @@
 {
   "name": "cmail-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API em NodeJS para servir o curso de Angular JS45",
+  "repository": {
+    "url": "https://github.com/caelum/cmail-back"
+  },
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV='production' nodemon ./server.js --exec babel-node",
@@ -11,8 +14,7 @@
     "test": "cross-env NODE_ENV='test' nyc --reporter=text --reporter=html --reporter=lcov mocha --require @babel/register --recursive './test/**/*.test.js'",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Caelum",
   "license": "MIT",
   "dependencies": {
     "@babel/cli": "^7.0.0",
@@ -22,29 +24,27 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@types/joi": "^13.4.5",
+    "@hapi/joi": "^17.1.1",
+    "@types/joi": "^14.3.4",
     "better-validator": "^2.1.8",
     "body-parser": "^1.18.3",
-    "celebrate": "^8.0.2",
     "chai": "^4.1.2",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
-    "cross-env": "^5.2.0",
-    "dotenv": "^6.0.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
-    "express-joi-validation": "^0.2.1",
     "fluent-validator": "^1.1.0",
     "http-status": "^1.2.0",
-    "joi": "^13.6.0",
     "jsonwebtoken": "^8.3.0",
-    "mocha": "^5.2.0",
+    "mocha": "^7.1.1",
+    "nodemon": "^2.0.2",
     "sequelize": "^5.15.1",
     "sqlite3": "^4.1.0",
-    "supertest": "^3.2.0"
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
-    "nodemon": "^1.18.4",
-    "nyc": "^13.0.1"
+    "nyc": "^15.0.0"
   }
 }
