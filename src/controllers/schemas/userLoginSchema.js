@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi'
+import Joi from '@hapi/joi';
 
 export const userLoginSchema = Joi.object({
     email: Joi.string().email().required(),

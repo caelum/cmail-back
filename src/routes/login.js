@@ -13,9 +13,7 @@ module.exports = (app) => {
 
     app.post(
         '/login',
-        validatorMiddleware({
-            body: userLoginSchema,
-        }),
+        validatorMiddleware(userLoginSchema),
         loginController.signIn
     )
 }

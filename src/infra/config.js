@@ -12,7 +12,7 @@ export default {
             define: {
                 underscored: true,
             },
-            operatorsAliases: false,
+            operatorsAliases: 0,
             logging: false
         }
     }
